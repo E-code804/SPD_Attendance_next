@@ -2,6 +2,7 @@
 // components/AttendanceForm.js
 import { useState } from "react";
 import DataList from "./DataList";
+import SubmitMessage from "./SubmitMessage";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const Form = () => {
     attending: "yes", // Default to 'Yes'
     excuse: "",
   });
+  const [submitStatus, setSubmitStatus] = useState(false);
+  const [displayStatus, setDisplayStatus] = useState(false);
 
   const handleChange = async (e) => {
     setFormData({
@@ -19,26 +22,34 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic, e.g., make a POST request
+    // console.log("Form submitted:", formData);
+    const currentDate = new Date().toISOString().split("T")[0];
+    const oldDate = localStorage.getItem("date");
 
-    // For demonstration purposes, log the form data
-    console.log("Form submitted:", formData);
-    fetch(`/api/`, {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
-      if (!response.ok) {
-        throw new Error("Bad Restaurant ID");
-      }
-      setFormData({
-        name: "",
-        attending: "yes", // Default to 'Yes'
-        excuse: "",
+    if (!(currentDate === oldDate)) {
+      fetch(`/api/`, {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error("Bad Restaurant ID");
+        }
+        setFormData({
+          name: "",
+          attending: "yes", // Default to 'Yes'
+          excuse: "",
+        });
+        setSubmitStatus(true);
+        setDisplayStatus(true);
+        localStorage.setItem("date", currentDate);
       });
-    });
+    } else {
+      setSubmitStatus(false);
+      setDisplayStatus(true);
+    }
   };
 
   return (
@@ -47,7 +58,7 @@ const Form = () => {
 
       <label htmlFor="name">
         <strong>Name:</strong> (Look for autocomplete, if your name is not there
-        text me)
+        text Erik P)
       </label>
       <input
         type="text"
@@ -101,6 +112,7 @@ const Form = () => {
       />
 
       <button type="submit">Submit</button>
+      {displayStatus && <SubmitMessage success={submitStatus} />}
     </form>
   );
 };

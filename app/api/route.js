@@ -5,7 +5,7 @@ export async function POST(req, { params }) {
   const client = await clientPromise;
   const db = client.db("SPD_Attendence");
   const { name, attending, excuse } = await req.json();
-  console.log(name);
+  // console.log(name);
   if (attending === "yes") {
     const result = await db.collection("attended").insertOne({ name });
     return NextResponse.json({ result }, { status: 200 });
