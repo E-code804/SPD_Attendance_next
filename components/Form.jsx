@@ -13,7 +13,7 @@ const Form = () => {
   });
   const [submitStatus, setSubmitStatus] = useState(false);
   const [displayStatus, setDisplayStatus] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [msg, setMsg] = useState("");
   const disabled = false;
 
@@ -129,7 +129,7 @@ const Form = () => {
       <button type="submit">Submit</button>
       {isLoading ? (
         <div id="loader">
-          <BeatLoader color={"crimson"} size={10} loading={true} />
+          <BeatLoader color={"crimson"} size={15} loading={true} />
         </div>
       ) : (
         displayStatus && <SubmitMessage success={submitStatus} msg={msg} />
