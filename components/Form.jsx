@@ -17,6 +17,13 @@ const Form = () => {
   const [msg, setMsg] = useState("");
   const disabled = false;
 
+  const handleStatus = (submit, display, msg, load) => {
+    setSubmitStatus(submit);
+    setDisplayStatus(display);
+    setMsg(msg);
+    setIsLoading(load);
+  };
+
   const handleChange = async (e) => {
     setFormData({
       ...formData,
@@ -27,15 +34,12 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log("Form submitted:", formData);
+    setIsLoading(true);
     const currentDate = new Date().toISOString().split("T")[0];
     const oldDate = localStorage.getItem("date");
-    setIsLoading(true);
 
     if (disabled) {
-      setSubmitStatus(false);
-      setDisplayStatus(true);
-      setMsg("Form is currently disabled.");
-      setIsLoading(false);
+      handleStatus(false, true, "Form is disabled.", false);
     } else if (!(currentDate === oldDate)) {
       fetch(`/api/`, {
         method: "POST",
@@ -45,6 +49,7 @@ const Form = () => {
         },
       }).then((response) => {
         if (!response.ok) {
+          handleStatus(false, true, "Couldn't submit.", false);
           throw new Error("Could't submit.");
         }
         setFormData({
@@ -52,17 +57,11 @@ const Form = () => {
           attending: "yes",
           excuse: "",
         });
-        setSubmitStatus(true);
-        setDisplayStatus(true);
-        setMsg("Success!");
-        setIsLoading(false);
+        handleStatus(true, true, "Success!", false);
         localStorage.setItem("date", currentDate);
       });
     } else {
-      setSubmitStatus(false);
-      setDisplayStatus(true);
-      setIsLoading(false);
-      setMsg("Naughty boy, you already submitted!");
+      handleStatus(false, true, "Naughty boy, you already submitted!", false);
     }
   };
 
