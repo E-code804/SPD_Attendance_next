@@ -1,5 +1,5 @@
 "use client";
-// components/AttendanceForm.js
+
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import DataList from "./DataList";
@@ -93,26 +93,31 @@ const Form = () => {
           <strong>Will you be attending?</strong>
         </label>
 
-        <label htmlFor="yes">Yes</label>
-        <input
-          type="radio"
-          id="yes"
-          name="attending"
-          value="yes"
-          checked={formData.attending === "yes"}
-          onChange={handleChange}
-          required
-        />
-        <label htmlFor="no">No</label>
-        <input
-          type="radio"
-          id="no"
-          name="attending"
-          value="no"
-          checked={formData.attending === "no"}
-          onChange={handleChange}
-          required
-        />
+        <label htmlFor="yes">
+          <input
+            type="radio"
+            id="yes"
+            name="attending"
+            value="yes"
+            checked={formData.attending === "yes"}
+            onChange={handleChange}
+            required
+          />
+          Yes
+        </label>
+
+        <label htmlFor="no">
+          <input
+            type="radio"
+            id="no"
+            name="attending"
+            value="no"
+            checked={formData.attending === "no"}
+            onChange={handleChange}
+            required
+          />
+          No
+        </label>
       </div>
 
       <label htmlFor="excuse">
