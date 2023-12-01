@@ -1,14 +1,14 @@
 "use client";
 // components/AttendanceForm.js
 import { useState } from "react";
-import { BeatLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
 import DataList from "./DataList";
 import SubmitMessage from "./SubmitMessage";
 
 const Form = () => {
   const [formData, setFormData] = useState({
     name: "",
-    attending: "yes", // Default to 'Yes'
+    attending: "yes",
     excuse: "",
   });
   const [submitStatus, setSubmitStatus] = useState(false);
@@ -24,16 +24,18 @@ const Form = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log("Form submitted:", formData);
     const currentDate = new Date().toISOString().split("T")[0];
     const oldDate = localStorage.getItem("date");
     setIsLoading(true);
+
     if (disabled) {
       setSubmitStatus(false);
       setDisplayStatus(true);
       setMsg("Form is currently disabled.");
+      setIsLoading(false);
     } else if (!(currentDate === oldDate)) {
       fetch(`/api/`, {
         method: "POST",
@@ -43,11 +45,11 @@ const Form = () => {
         },
       }).then((response) => {
         if (!response.ok) {
-          throw new Error("Bad Restaurant ID");
+          throw new Error("Could't submit.");
         }
         setFormData({
           name: "",
-          attending: "yes", // Default to 'Yes'
+          attending: "yes",
           excuse: "",
         });
         setSubmitStatus(true);
@@ -71,8 +73,8 @@ const Form = () => {
       <label htmlFor="name">
         <strong>Name:</strong>{" "}
         <span id="auto">
-          Look/press arrow for autocomplete, if your name is not there text Erik
-          P
+          (Look/press arrow for autocomplete, if your name is not there text
+          Erik P)
         </span>
       </label>
       <input
@@ -129,7 +131,13 @@ const Form = () => {
       <button type="submit">Submit</button>
       {isLoading ? (
         <div id="loader">
-          <BeatLoader color={"crimson"} size={15} loading={true} />
+          <ClipLoader
+            color={"red"}
+            loading={true}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
         </div>
       ) : (
         displayStatus && <SubmitMessage success={submitStatus} msg={msg} />
