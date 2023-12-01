@@ -59,7 +59,8 @@ const Form = () => {
       <label htmlFor="name">
         <strong>Name:</strong>{" "}
         <span id="auto">
-          (Look for autocomplete, if your name is not there text Erik P)
+          (Look/press arrow for autocomplete, if your name is not there text
+          Erik P)
         </span>
       </label>
       <input
