@@ -3,14 +3,6 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata = {
-//   title: "Menumaster",
-//   description: "Menumaster - Find a restaurant best suited for you.",
-//   icons: {
-//     icon: "/icon.ico",
-//   },
-// };
-
 export const metadata = {
   title: "Sigma Phi Delta Chapter Attendance",
   description:
