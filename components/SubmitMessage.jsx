@@ -1,5 +1,5 @@
 // components/SubmitMessage.js
-const SubmitMessage = ({ success }) => {
+const SubmitMessage = ({ success, msg }) => {
   return (
     <div
       style={{
@@ -11,9 +11,9 @@ const SubmitMessage = ({ success }) => {
       }}
     >
       {success ? (
-        <div style={{ color: "green" }}>Success!</div>
+        <div style={{ color: "green" }}>{msg}</div>
       ) : (
-        <div style={{ color: "red" }}>Naughty boy, you already submitted!</div>
+        <div style={{ color: "red" }}>{msg}</div>
       )}
     </div>
   );

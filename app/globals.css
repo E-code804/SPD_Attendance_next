@@ -76,3 +76,10 @@ button:hover {
 #auto {
   font-size: 14px;
 }
+
+#loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}

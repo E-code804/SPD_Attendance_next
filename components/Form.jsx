@@ -1,6 +1,7 @@
 "use client";
 // components/AttendanceForm.js
 import { useState } from "react";
+import { BeatLoader } from "react-spinners";
 import DataList from "./DataList";
 import SubmitMessage from "./SubmitMessage";
 
@@ -12,6 +13,9 @@ const Form = () => {
   });
   const [submitStatus, setSubmitStatus] = useState(false);
   const [displayStatus, setDisplayStatus] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [msg, setMsg] = useState("");
+  const disabled = false;
 
   const handleChange = async (e) => {
     setFormData({
@@ -25,8 +29,12 @@ const Form = () => {
     // console.log("Form submitted:", formData);
     const currentDate = new Date().toISOString().split("T")[0];
     const oldDate = localStorage.getItem("date");
-
-    if (!(currentDate === oldDate)) {
+    setIsLoading(true);
+    if (disabled) {
+      setSubmitStatus(false);
+      setDisplayStatus(true);
+      setMsg("Form is currently disabled.");
+    } else if (!(currentDate === oldDate)) {
       fetch(`/api/`, {
         method: "POST",
         body: JSON.stringify(formData),
@@ -44,23 +52,27 @@ const Form = () => {
         });
         setSubmitStatus(true);
         setDisplayStatus(true);
+        setMsg("Success!");
+        setIsLoading(false);
         localStorage.setItem("date", currentDate);
       });
     } else {
       setSubmitStatus(false);
       setDisplayStatus(true);
+      setIsLoading(false);
+      setMsg("Naughty boy, you already submitted!");
     }
   };
 
   return (
-    <form id="form" onSubmit={handleSubmit}>
+    <form id="form" onSubmit={handleSubmit} disabled={true}>
       <h2>Attendance Form</h2>
 
       <label htmlFor="name">
         <strong>Name:</strong>{" "}
         <span id="auto">
-          (Look/press arrow for autocomplete, if your name is not there text
-          Erik P)
+          Look/press arrow for autocomplete, if your name is not there text Erik
+          P
         </span>
       </label>
       <input
@@ -115,7 +127,13 @@ const Form = () => {
       />
 
       <button type="submit">Submit</button>
-      {displayStatus && <SubmitMessage success={submitStatus} />}
+      {isLoading ? (
+        <div id="loader">
+          <BeatLoader color={"crimson"} size={10} loading={true} />
+        </div>
+      ) : (
+        displayStatus && <SubmitMessage success={submitStatus} msg={msg} />
+      )}
     </form>
   );
 };
