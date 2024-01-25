@@ -71,10 +71,10 @@ const Form = () => {
 
       <label htmlFor="name">
         <strong>Name:</strong>{" "}
-        <span id="auto">
+        {/* <span id="auto">
           (Look/press arrow for autocomplete, if your name is not there text
           Erik P)
-        </span>
+        </span> */}
       </label>
       <input
         type="text"

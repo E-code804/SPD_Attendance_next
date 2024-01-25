@@ -33,9 +33,7 @@ if __name__ == "__main__":
         missed = db["missed"]
         missees = missed.find()
 
-        brothers = (
-            {}
-        )  # Avoid using the name 'all' as it's a built-in function in Python
+        brothers = {}
 
         # Assuming 'attendees' and 'missees' are dictionaries
         for a in attendees:
