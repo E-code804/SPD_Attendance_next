@@ -121,7 +121,8 @@ const Form = () => {
       </div>
 
       <label htmlFor="excuse">
-        <strong>Excuse:</strong> (type n/a if attending)
+        <strong>Excuse:</strong>{" "}
+        <span id="excuse-extra">(type n/a if attending)</span>
       </label>
       <input
         type="text"
