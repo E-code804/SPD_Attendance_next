@@ -66,15 +66,11 @@ const Form = () => {
   };
 
   return (
-    <form id="form" onSubmit={handleSubmit} disabled={true}>
+    <form id="form" onSubmit={handleSubmit}>
       <h2>Attendance Form</h2>
 
       <label htmlFor="name">
-        <strong>Name:</strong>{" "}
-        {/* <span id="auto">
-          (Look/press arrow for autocomplete, if your name is not there text
-          Erik P)
-        </span> */}
+        <strong>Name:</strong>
       </label>
       <input
         type="text"
