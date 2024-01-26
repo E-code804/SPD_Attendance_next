@@ -7,14 +7,12 @@ const names = [
   "Aditya Goel",
   "Anthony Qin",
   "Archer Sariscak",
-  "Arjun Pinto",
   "Ben Fleming",
   "Brendan Bullock",
   "Cade Bergeron",
   "Calvin Hughes",
   "Chris Burger",
   "Colin Wakefield",
-  "Daniel Hunter",
   "Dean Carolan",
   "Donovan Duong",
   "Edwin Pavlovsky",
@@ -77,10 +75,8 @@ const names = [
   "Yoon Nam",
   "Zane Martinez",
   "Zeyu Zhong",
-  "Harry Shinkle",
   "Isaiah Ragsdale",
   "Will Phoone",
-  "Yash Kapa",
 ];
 
 export default names;
