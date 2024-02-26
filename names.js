@@ -91,6 +91,7 @@ const names = [
   "Oshin Rawal",
   "Shubh Sharma",
   "Tyler McPhee",
+  "Luke Zic",
 ];
 
 export default names;
