@@ -15,7 +15,7 @@ const Form = () => {
   const [displayStatus, setDisplayStatus] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [msg, setMsg] = useState("");
-  const disabled = false;
+  const disabled = true;
 
   const handleStatus = (submit, display, msg, load) => {
     setSubmitStatus(submit);
