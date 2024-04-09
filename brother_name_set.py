@@ -53,7 +53,7 @@ brothers_set = set(
         "Ryan Firebaugh",
         "Ryan Kinloch",
         "Sai Iyer",
-        "Sanjeev Devajaran",
+        "Sanjeev Devarajan",
         "Sean Jordon",
         "Shiv Shah",
         "Shivam Amin",
