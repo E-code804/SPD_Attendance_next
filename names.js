@@ -77,6 +77,23 @@ const names = [
   "Zeyu Zhong",
   "Isaiah Ragsdale",
   "Will Phoone",
+  "Jake Lawrence",
+  "Adam Carita",
+  "Azzan Tarik",
+  "Carter Dinicola",
+  "Gil Vadel",
+  "Ian Stewart",
+  "Matt Chytil",
+  "Prod Manolis-Oraiopoulos",
+  "Rahul Tejwani",
+  "Shubh Sharma",
+  "Tyler McPhee",
+  "Luke Zic",
+  "Daniel Son",
+  "Daniel Hunter",
+  "Arjun Pinto",
+  "Yash Kapa",
+  "Harry Shinkle",
 ];
 
 export default names;
