@@ -26,13 +26,17 @@ body {
 }
 
 /* Styling for the form */
-form {
+.form {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 300px;
   margin-bottom: 25px;
+}
+
+.form p a {
+  color: #333;
 }
 
 h2 {

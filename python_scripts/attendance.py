@@ -1,5 +1,7 @@
 from dotenv import load_dotenv
 from pymongo import MongoClient
+from datetime import datetime
+
 import openpyxl
 import os
 
@@ -11,8 +13,14 @@ import os
 
 from brother_name_set import brothers_set
 
+# Get the directory of the current script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Construct the path to the .env file
+env_path = os.path.join(script_dir, "..", ".env")
+
 # Load environment variables from .env and new excel file.
-load_dotenv()
+load_dotenv(dotenv_path=env_path)
 uri = os.getenv("MONGO_CONNECTION_STRING")
 
 
@@ -23,10 +31,12 @@ def get_db():
 
 if __name__ == "__main__":
     try:
+        print(script_dir)
+        date = datetime.now().strftime("%m_%d_%Y")
         db = get_db()
         xl = openpyxl.Workbook()
         sheet = xl.active
-        sheet.title = "Attendance_01_26_24"
+        sheet.title = f"Attendance_{date}"
 
         attending = db["attended"]
         attendees = attending.find()
@@ -53,7 +63,10 @@ if __name__ == "__main__":
         for brother_name, attend_value in brothers.items():
             sheet.append([brother_name, attend_value])
 
-        xl.save("ex.xlsx")
+        # Saving to Attendance Sheet directory
+        directory = f"{script_dir}/Attendance_Sheets"
+        file_path = os.path.join(directory, f"Attendance_{date}.xlsx")
+        xl.save(file_path)
 
     except Exception as e:
         print(f"An error occurred: {e}")

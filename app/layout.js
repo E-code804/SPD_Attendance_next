@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./css/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -8,7 +8,7 @@ export const metadata = {
   description:
     "Please attend our lovely chapters, or any event we require you to be at!.",
   icons: {
-    icon: "/icon.ico",
+    icon: "/icons/icon.ico",
   },
 };
 

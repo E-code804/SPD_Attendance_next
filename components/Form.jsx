@@ -66,7 +66,7 @@ const Form = () => {
   };
 
   return (
-    <form id="form" onSubmit={handleSubmit}>
+    <form id="form" className="form" onSubmit={handleSubmit}>
       <h2>Attendance Form</h2>
 
       <label htmlFor="name">
