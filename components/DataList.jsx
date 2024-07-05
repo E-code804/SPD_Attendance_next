@@ -1,6 +1,6 @@
-// import React from "react";
 import names from "@/names";
 
+// This component renders the autocomplete name list when entering one's name.
 const DataList = () => {
   return (
     <datalist id="names">

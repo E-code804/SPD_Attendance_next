@@ -13,36 +13,65 @@ import os
 
 from brother_name_set import brothers_set
 
+
 # Get the directory of the current script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
+
 # Construct the path to the .env file
 env_path = os.path.join(script_dir, "..", ".env")
+
 
 # Load environment variables from .env and new excel file.
 load_dotenv(dotenv_path=env_path)
 uri = os.getenv("MONGO_CONNECTION_STRING")
 
 
+# Function to connect to the MongoDB database
 def get_db():
     client = MongoClient(uri)
     return client["SPD_Attendence"]
 
 
+# Function to calculate relevant statistics for this required event.
+# lst: A list containing 0, 1, -1.
+def calculate_percentages(lst):
+    total = len(lst)
+    if total == 0:
+        return {"Missed": 0, "Attended": 0, "Excused": 0}
+
+    count_0 = lst.count(0)
+    count_1 = lst.count(1)
+    count_minus_1 = lst.count(-1)
+
+    percentage_0 = (count_0 / total) * 100
+    percentage_1 = (count_1 / total) * 100
+    percentage_minus_1 = (count_minus_1 / total) * 100
+
+    return {
+        "Missed": round(percentage_0, 2),
+        "Attended": round(percentage_1, 2),
+        "Excused": round(percentage_minus_1, 2),
+    }
+
+
 if __name__ == "__main__":
     try:
-        print(script_dir)
-        date = datetime.now().strftime("%m_%d_%Y")
-        db = get_db()
-        xl = openpyxl.Workbook()
+        event_type = "Chapter"  # Event type
+        date = datetime.now().strftime("%m_%d_%Y")  # Get current date.
+        title = f"{event_type}_Attendance_{date}"  # Sheet title
+        db = get_db()  # Connect to DB.
+        xl = openpyxl.Workbook()  # Create a new excel file & label it.
         sheet = xl.active
-        sheet.title = f"Attendance_{date}"
+        sheet.title = title
 
+        # Get the attended/missed collections.
         attending = db["attended"]
         attendees = attending.find()
 
         missed = db["missed"]
         missees = missed.find()
+
         # Keys are brother name, values or -1, 0, or 1 depending on attendance.
         brothers = {}
 
@@ -57,15 +86,25 @@ if __name__ == "__main__":
             if brother not in brothers.keys():
                 brothers[brother] = -1
 
-        # Sort brother based on name
+        # Sort brother based on name (alphabetical order)
         brothers = dict(sorted(brothers.items()))
+        statuses = list(brothers.values())
+        event_statistics = calculate_percentages(statuses)
 
+        # Enter the event's title on the first row.
+        sheet.append(["", title])
+
+        # Record their attendance in rows.
         for brother_name, attend_value in brothers.items():
             sheet.append([brother_name, attend_value])
 
+        # Insert event statistics into the sheet
+        for status, statistic in event_statistics.items():
+            sheet.append([status, statistic])
+
         # Saving to Attendance Sheet directory
         directory = f"{script_dir}/Attendance_Sheets"
-        file_path = os.path.join(directory, f"Attendance_{date}.xlsx")
+        file_path = os.path.join(directory, f"{title}.xlsx")
         xl.save(file_path)
 
     except Exception as e:

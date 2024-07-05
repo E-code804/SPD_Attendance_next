@@ -6,6 +6,7 @@ import DataList from "./DataList";
 import SubmitMessage from "./SubmitMessage";
 
 const Form = () => {
+  // State management for form data and UI status
   const [formData, setFormData] = useState({
     name: "",
     attending: "yes",
@@ -17,6 +18,7 @@ const Form = () => {
   const [msg, setMsg] = useState("");
   const disabled = false;
 
+  // Function to update multiple states
   const handleStatus = (submit, display, msg, load) => {
     setSubmitStatus(submit);
     setDisplayStatus(display);
@@ -24,6 +26,7 @@ const Form = () => {
     setIsLoading(load);
   };
 
+  // Update form data state on input change
   const handleChange = async (e) => {
     setFormData({
       ...formData,
@@ -31,16 +34,19 @@ const Form = () => {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Form submitted:", formData);
     setIsLoading(true);
+
     const currentDate = new Date().toISOString().split("T")[0];
     const oldDate = localStorage.getItem("date");
 
+    // Check if form submission is allowed
     if (disabled) {
       handleStatus(false, true, "Form is disabled.", false);
     } else if (!(currentDate === oldDate)) {
+      // Make post request to API
       fetch(`/api/`, {
         method: "POST",
         body: JSON.stringify(formData),
@@ -50,8 +56,9 @@ const Form = () => {
       }).then((response) => {
         if (!response.ok) {
           handleStatus(false, true, "Couldn't submit.", false);
-          throw new Error("Could't submit.");
+          throw new Error("Couldn't submit.");
         }
+        // Reset form data and update status on successful submission
         setFormData({
           name: "",
           attending: "yes",
@@ -61,7 +68,8 @@ const Form = () => {
         localStorage.setItem("date", currentDate);
       });
     } else {
-      handleStatus(false, true, "Naughty boy, you already submitted!", false);
+      // Disallow the same person to submit the form twice.
+      handleStatus(false, true, "You already submitted!", false);
     }
   };
 
