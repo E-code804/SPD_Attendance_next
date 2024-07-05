@@ -1,22 +1,31 @@
 "use client";
 
+import names from "@/names";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import DataList from "./DataList";
 import SubmitMessage from "./SubmitMessage";
 
 const Form = () => {
-  // State management for form data and UI status
+  // Data entered by users
   const [formData, setFormData] = useState({
     name: "",
     attending: "yes",
     excuse: "",
   });
-  const [submitStatus, setSubmitStatus] = useState(false);
-  const [displayStatus, setDisplayStatus] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [msg, setMsg] = useState("");
-  const disabled = false;
+  const [submitStatus, setSubmitStatus] = useState(false); // Determines if the form's submission was a success or not
+  const [displayStatus, setDisplayStatus] = useState(false); // Displaying success/error message upon submission of form.
+  const [isLoading, setIsLoading] = useState(false); // To play loading animation while form is being submitted.
+  const [msg, setMsg] = useState(""); // Message user sees upon successful/unsuccessful form submission
+  const disabled = false; // Determines if one can use the form or not.
+
+  // Capitalize the name
+  const capitalizeName = (name) => {
+    return name
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
 
   // Function to update multiple states
   const handleStatus = (submit, display, msg, load) => {
@@ -28,9 +37,10 @@ const Form = () => {
 
   // Update form data state on input change
   const handleChange = async (e) => {
+    // Ensuring name is properly capitalized.
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      name: capitalizeName(e.target.value),
     });
   };
 
@@ -46,6 +56,17 @@ const Form = () => {
     if (disabled) {
       handleStatus(false, true, "Form is disabled.", false);
     } else if (!(currentDate === oldDate)) {
+      // Checking that name is in the names set.
+      if (!names.includes(formData.name)) {
+        handleStatus(
+          false,
+          true,
+          "Please enter full name & proper spelling.",
+          false
+        );
+        return;
+      }
+
       // Make post request to API
       fetch(`/api/`, {
         method: "POST",
@@ -124,18 +145,22 @@ const Form = () => {
         </label>
       </div>
 
-      <label htmlFor="excuse">
-        <strong>Excuse:</strong>{" "}
-        <span id="excuse-extra">(type n/a if attending)</span>
-      </label>
-      <input
-        type="text"
-        name="excuse"
-        id="excuse"
-        required
-        value={formData.excuse}
-        onChange={handleChange}
-      />
+      {formData.attending === "no" && (
+        <>
+          <label htmlFor="excuse">
+            <strong>Excuse:</strong>{" "}
+            {/* <span id="excuse-extra">(type n/a if attending)</span> */}
+          </label>
+          <input
+            type="text"
+            name="excuse"
+            id="excuse"
+            required
+            value={formData.excuse}
+            onChange={handleChange}
+          />
+        </>
+      )}
 
       <button type="submit">Submit</button>
       {isLoading ? (

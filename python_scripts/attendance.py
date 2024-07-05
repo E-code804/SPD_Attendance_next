@@ -107,5 +107,9 @@ if __name__ == "__main__":
         file_path = os.path.join(directory, f"{title}.xlsx")
         xl.save(file_path)
 
+        # Clearing the collections
+        # db["attended"].delete_many({})
+        # db["missed"].delete_many({})
+
     except Exception as e:
         print(f"An error occurred: {e}")

@@ -87,7 +87,7 @@ const names = [
   "Prod Manolis-Oraiopoulos",
   "Rahul Tejwani",
   "Shubh Sharma",
-  "Tyler McPhee",
+  "Tyler Mcphee",
   "Luke Zic",
   "Daniel Son",
   "Daniel Hunter",
