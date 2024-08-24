@@ -82,7 +82,7 @@ brothers_set = set(
         "Gil Vadel",
         "Ian Stewart",
         "Matt Chytil",
-        "Prod Manolis-Oraiopoulos",
+        "Prod",
         "Rahul Tejwani",
         "Shubh Sharma",
         "Tyler McPhee",

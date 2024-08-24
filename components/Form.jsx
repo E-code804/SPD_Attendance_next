@@ -36,7 +36,7 @@ const Form = () => {
   };
 
   // Update form data state on input change
-  const handleChange = async (e) => {
+  const handleNameChange = async (e) => {
     // Ensuring name is properly capitalized.
     setFormData({
       ...formData,
@@ -116,7 +116,7 @@ const Form = () => {
         required
         placeholder="Ex: Vikas Reddy"
         value={formData.name}
-        onChange={handleChange}
+        onChange={handleNameChange}
       />
       <DataList />
 
