@@ -44,6 +44,13 @@ const Form = () => {
     });
   };
 
+  const handleExcuse = (e) => {
+    setFormData({
+      ...formData,
+      excuse: capitalizeName(e.target.value),
+    });
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -125,7 +132,7 @@ const Form = () => {
             name="attending"
             value="yes"
             checked={formData.attending === "yes"}
-            onChange={handleChange}
+            onChange={() => setFormData({ ...formData, attending: "yes" })}
             required
           />
           Yes
@@ -138,7 +145,7 @@ const Form = () => {
             name="attending"
             value="no"
             checked={formData.attending === "no"}
-            onChange={handleChange}
+            onChange={() => setFormData({ ...formData, attending: "no" })}
             required
           />
           No
@@ -157,7 +164,7 @@ const Form = () => {
             id="excuse"
             required
             value={formData.excuse}
-            onChange={handleChange}
+            onChange={handleExcuse}
           />
         </>
       )}
