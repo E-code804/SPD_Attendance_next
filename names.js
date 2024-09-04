@@ -25,7 +25,7 @@ const names = [
   "Jacob Keeler",
   "Jake Gurewitz",
   "Jared Fleming",
-  "Joseph Hutchinson",
+  "Joseph Hutchison",
   "Joe Puchalla",
   "Joon Park",
   "Kai McKeown",
