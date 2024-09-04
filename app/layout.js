@@ -4,9 +4,8 @@ import "./css/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Sigma Phi Delta Chapter Attendance",
-  description:
-    "Please attend our lovely chapters, or any event we require you to be at!.",
+  title: "Sigma Phi Delta Hot Ones Attendance",
+  description: "Hot Ones rush event: 9/4/24.",
   icons: {
     icon: "/icons/icon.ico",
   },
