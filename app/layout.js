@@ -4,8 +4,8 @@ import "./css/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Sigma Phi Delta Hot Ones Attendance",
-  description: "Hot Ones rush event: 9/4/24.",
+  title: "Sigma Phi Delta Beer Olympics Attendance",
+  description: "Beer Olympics rush event: 9/5/24.",
   icons: {
     icon: "/icons/icon.ico",
   },

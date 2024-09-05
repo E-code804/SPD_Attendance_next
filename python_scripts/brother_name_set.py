@@ -85,7 +85,7 @@ brothers_set = set(
         "Prod",
         "Rahul Tejwani",
         "Shubh Sharma",
-        "Tyler McPhee",
+        "Tyler Mcphee",
         "Luke Zic",
         "Daniel Son",
         "Daniel Hunter",
