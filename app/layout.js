@@ -3,9 +3,17 @@ import "./css/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// export const metadata = {
+//   title: "Sigma Phi Delta Chapter Attendance",
+//   description: "Chapter: 9/8/24.",
+//   icons: {
+//     icon: "/icons/icon.ico",
+//   },
+// };
+
 export const metadata = {
-  title: "Sigma Phi Delta Chapter Attendance",
-  description: "Chapter: 9/8/24.",
+  title: "Sigma Phi Delta Voting Attendance",
+  description: "Voting: 9/12/24.",
   icons: {
     icon: "/icons/icon.ico",
   },
