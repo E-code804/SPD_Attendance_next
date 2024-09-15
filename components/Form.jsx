@@ -17,7 +17,7 @@ const Form = () => {
   const [displayStatus, setDisplayStatus] = useState(false); // Displaying success/error message upon submission of form.
   const [isLoading, setIsLoading] = useState(false); // To play loading animation while form is being submitted.
   const [msg, setMsg] = useState(""); // Message user sees upon successful/unsuccessful form submission
-  const disabled = true; // Determines if one can use the form or not.
+  const disabled = false; // Determines if one can use the form or not.
 
   // Capitalize the name
   const capitalizeName = (name) => {
@@ -103,7 +103,7 @@ const Form = () => {
 
   return (
     <form id="form" className="form" onSubmit={handleSubmit}>
-      <h2>Voting Attendance</h2>
+      <h2>Chapter Attendance</h2>
 
       <label htmlFor="name">
         <strong>Name:</strong>
