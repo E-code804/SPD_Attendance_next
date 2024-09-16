@@ -28,7 +28,7 @@ const names = [
   "Joseph Hutchison",
   "Joe Puchalla",
   "Joon Park",
-  "Kai McKeown",
+  "Kai Mckeown",
   "Karan Naiknavare",
   "Kenji Hoang",
   "kenji",

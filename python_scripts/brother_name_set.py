@@ -29,7 +29,7 @@ brothers_set = set(
         "Joseph Hutchison",
         "Joe Puchalla",
         "Joon Park",
-        "Kai McKeown",
+        "Kai Mckeown",
         "Karan Naiknavare",
         "Kenji Hoang",
         "Kevin Ling",
