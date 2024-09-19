@@ -3,21 +3,21 @@ import "./css/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Sigma Phi Delta Chapter Attendance",
-  description: "Chapter: 9/15/24.",
-  icons: {
-    icon: "/icons/icon.ico",
-  },
-};
-
 // export const metadata = {
-//   title: "Sigma Phi Delta Voting Attendance",
-//   description: "Voting: 9/12/24.",
+//   title: "Sigma Phi Delta Chapter Attendance",
+//   description: "Chapter: 9/15/24.",
 //   icons: {
 //     icon: "/icons/icon.ico",
 //   },
 // };
+
+export const metadata = {
+  title: "Sigma Phi Delta Initiation",
+  description: "Initiation: 9/19/24.",
+  icons: {
+    icon: "/icons/icon.ico",
+  },
+};
 
 export default function RootLayout({ children }) {
   return (
