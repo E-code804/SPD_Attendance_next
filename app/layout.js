@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Sigma Phi Delta Chapter Attendance",
-  description: "Chapter: 9/24/24.",
+  description: "Chapter: 9/29/24.",
   icons: {
     icon: "/icons/icon.ico",
   },
