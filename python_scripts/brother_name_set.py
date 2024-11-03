@@ -18,7 +18,7 @@ brothers_set = set(
         "Kai Mckeown",
         "Karan Naiknavare",
         "Kurt Klaus",
-        "Kyle McMahon",
+        "Kyle Mcmahon",
         "Lanz Garcia",
         "Logan Gallant",
         "Max Schaffer",
