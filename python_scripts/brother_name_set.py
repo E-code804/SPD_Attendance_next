@@ -57,7 +57,7 @@ brothers_set = set(
         "Arjun Pinto",
         "Yash Kapa",
         "Harry Shinkle",
-        "Adian Therrien",
+        "Aidan Therrien",
         "Akhil Sethukarthy",
         "Arnav Kamath",
         "Chris Whitehead",
