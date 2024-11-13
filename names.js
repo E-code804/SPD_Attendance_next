@@ -56,6 +56,13 @@ const names = [
   "Arjun Pinto",
   "Yash Kapa",
   "Harry Shinkle",
+  "Adian Therrien",
+  "Akhil Sethukarthy",
+  "Arnav Kamath",
+  "Chris Whitehead",
+  "Nicholas Klinefelter",
+  "Tyler Sokol",
+  "Coleman Brown",
 ];
 
 export default names;
