@@ -12,8 +12,8 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 export const metadata = {
-  title: "Sigma Phi Delta Initiation",
-  description: "D&I Event with Deeph: 11/13/24.",
+  title: "Sigma Phi Delta Voting",
+  description: "Voting: 11/17/24.",
   icons: {
     icon: "/icons/icon.ico",
   },

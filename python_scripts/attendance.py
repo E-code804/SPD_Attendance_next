@@ -80,7 +80,7 @@ if __name__ == "__main__":
             brothers[a["name"]] = 1
 
         for m in missees:
-            brothers[m["name"]] = 0
+            brothers[m["name"]] = (0, m["excuse"])
 
         for brother in brothers_set:
             if brother not in brothers.keys():
@@ -92,11 +92,14 @@ if __name__ == "__main__":
         event_statistics = calculate_percentages(statuses)
 
         # Enter the event's title on the first row.
-        sheet.append(["", title])
+        sheet.append(["", title, "Excuse"])
 
         # Record their attendance in rows.
         for brother_name, attend_value in brothers.items():
-            sheet.append([brother_name, attend_value])
+            if isinstance(attend_value, int):
+                sheet.append([brother_name, attend_value])
+            else:
+                sheet.append([brother_name, attend_value[0], attend_value[1]])
 
         # Insert event statistics into the sheet
         for status, statistic in event_statistics.items():
