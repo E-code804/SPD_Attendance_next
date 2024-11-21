@@ -111,8 +111,8 @@ if __name__ == "__main__":
         xl.save(file_path)
 
         # Clearing the collections
-        # db["attended"].delete_many({})
-        # db["missed"].delete_many({})
+        db["attended"].delete_many({})
+        db["missed"].delete_many({})
 
     except Exception as e:
         print(f"An error occurred: {e}")
