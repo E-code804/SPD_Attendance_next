@@ -17,7 +17,14 @@ const Form = () => {
   const [displayStatus, setDisplayStatus] = useState(false); // Displaying success/error message upon submission of form.
   const [isLoading, setIsLoading] = useState(false); // To play loading animation while form is being submitted.
   const [msg, setMsg] = useState(""); // Message user sees upon successful/unsuccessful form submission
-  const disabled = true; // Determines if one can use the form or not.
+  const disabled = false; // Determines if one can use the form or not.
+  const requestOptions = {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
   // Capitalize the name
   const capitalizeName = (name) => {
@@ -36,18 +43,11 @@ const Form = () => {
   };
 
   // Update form data state on input change
-  const handleNameChange = async (e) => {
+  const handleInputChange = async (e) => {
     // Ensuring name is properly capitalized.
     setFormData({
       ...formData,
-      name: capitalizeName(e.target.value),
-    });
-  };
-
-  const handleExcuse = (e) => {
-    setFormData({
-      ...formData,
-      excuse: capitalizeName(e.target.value),
+      [e.target.name]: capitalizeName(e.target.value),
     });
   };
 
@@ -74,18 +74,15 @@ const Form = () => {
         return;
       }
 
-      // Make post request to API
-      fetch(`/api/`, {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then((response) => {
+      try {
+        // Make post request to API
+        const response = await fetch("/api", requestOptions);
+
         if (!response.ok) {
           handleStatus(false, true, "Couldn't submit.", false);
           throw new Error("Couldn't submit.");
         }
+
         // Reset form data and update status on successful submission
         setFormData({
           name: "",
@@ -94,7 +91,10 @@ const Form = () => {
         });
         handleStatus(true, true, "Success!", false);
         localStorage.setItem("date", currentDate);
-      });
+      } catch (error) {
+        console.error(`DB Error: ${error.message}`);
+        handleStatus(false, true, error.message, false);
+      }
     } else {
       // Disallow the same person to submit the form twice.
       handleStatus(false, true, "You already submitted!", false);
@@ -103,7 +103,7 @@ const Form = () => {
 
   return (
     <form id="form" className="form" onSubmit={handleSubmit}>
-      <h2>Voting II Attendance</h2>
+      <h2>Chapter Attendance</h2>
 
       <label htmlFor="name">
         <strong>Name:</strong>
@@ -116,7 +116,7 @@ const Form = () => {
         required
         placeholder="Ex: Vikas Reddy"
         value={formData.name}
-        onChange={handleNameChange}
+        onChange={handleInputChange}
       />
       <DataList />
 
@@ -164,7 +164,7 @@ const Form = () => {
             id="excuse"
             required
             value={formData.excuse}
-            onChange={handleExcuse}
+            onChange={handleInputChange}
           />
         </>
       )}
