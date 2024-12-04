@@ -103,7 +103,7 @@ const Form = () => {
 
   return (
     <form id="form" className="form" onSubmit={handleSubmit}>
-      <h2>Chapter Attendance</h2>
+      <h2>DSFL CHEX Event</h2>
 
       <label htmlFor="name">
         <strong>Name:</strong>
