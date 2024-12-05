@@ -17,7 +17,7 @@ const Form = () => {
   const [displayStatus, setDisplayStatus] = useState(false); // Displaying success/error message upon submission of form.
   const [isLoading, setIsLoading] = useState(false); // To play loading animation while form is being submitted.
   const [msg, setMsg] = useState(""); // Message user sees upon successful/unsuccessful form submission
-  const disabled = false; // Determines if one can use the form or not.
+  const disabled = true; // Determines if one can use the form or not.
   const requestOptions = {
     method: "POST",
     body: JSON.stringify(formData),
